@@ -1,5 +1,5 @@
 const myMsg = require("./notes.js");
-const validator = require("validator"); 
+const chalk = require("chalk");
 
 const msg = myMsg;
-console.log(msg);
+console.log(chalk.green('Success!'));
