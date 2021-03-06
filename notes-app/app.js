@@ -1,3 +1,5 @@
-const fs = require("fs");
+const myMsg = require("./notes.js");
+const validator = require("validator"); 
 
-fs.appendFileSync("notes.txt", " appended some more")
+const msg = myMsg;
+console.log(msg);
