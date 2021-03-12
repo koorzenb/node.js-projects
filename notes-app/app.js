@@ -1,4 +1,4 @@
-const myMsg = require("./notes.js");
+const notes = require("./notes.js");
 const yargs = require("yargs");
 const chalk = require("chalk");
 
@@ -23,8 +23,7 @@ yargs.command({
         }
     },
     handler: function add(argv) {
-        console.log("Title: " + argv.title);
-        console.log("Body: " + argv.body);
+        notes.addNote(argv.title, argv.body);
     }
 })
 
