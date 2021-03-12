@@ -1,11 +1,11 @@
 const fs = require('fs');
 const chalk = require("chalk");
 
-function getNotes() {
+const getNotes = () => {
     const notes = [];
 }
 
-function addNote(title, body, file) {
+const addNote = (title, body, file) {
    const notes = loadNotes(file); 
    const duplicateNotes = notes.filter( note => {return title === note.title} ); 
    
@@ -21,7 +21,7 @@ function addNote(title, body, file) {
    }
 }
 
-function removeNote(title, file){
+const removeNote = (title, file) => {
     const notes = loadNotes(file); 
     let index;
     const filteredNotes = notes.filter( note => {
@@ -41,7 +41,7 @@ const saveNotes = (notes, file) => {
     fs.writeFileSync(file, notesJSON);
 }
 
-function loadNotes(file) {
+const loadNotes = file => {
     try {
         const dataBuffer = fs.readFileSync(file);
         const dataJSON = dataBuffer.toString();

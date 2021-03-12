@@ -24,9 +24,7 @@ yargs.command({
             type: "string"
         }
     },
-    handler: function add(argv) {
-        notes.addNote(argv.title, argv.body, file);
-    }
+    handler: argv => notes.addNote(argv.title, argv.body, file)
 })
 
 yargs.command({
@@ -39,9 +37,7 @@ yargs.command({
             type: "string"
         }
     },
-    handler: function remove(argv) {
-        notes.removeNote(argv.title, file);
-    }
+    handler: argv => notes.removeNote(argv.title, file)
 })
 
 yargs.parse();
