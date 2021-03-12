@@ -5,7 +5,7 @@ const getNotes = () => {
     const notes = [];
 }
 
-const addNote = (title, body, file) {
+const addNote = (title, body, file) => {
    const notes = loadNotes(file); 
    const duplicateNotes = notes.filter( note => {return title === note.title} ); 
    
@@ -52,8 +52,24 @@ const loadNotes = file => {
     }
 }
 
+const readNote = (title, file) => {
+
+}
+
+const listNotes = (file) => {
+    const notes = loadNotes(file); 
+
+    notes.forEach(note => {
+        console.log(" ");
+        console.log(chalk.bold(note.title));
+        console.log("  " + chalk.grey(note.body));
+    });
+}
+
 module.exports = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    readNote,
+    listNotes
 }
