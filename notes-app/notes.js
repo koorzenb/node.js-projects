@@ -1,10 +1,6 @@
 const fs = require('fs');
 const chalk = require("chalk");
 
-const getNotes = () => {
-    const notes = [];
-}
-
 const addNote = (title, body, file) => {
    const notes = loadNotes(file); 
    const duplicateNotes = notes.filter( note => {return title === note.title} ); 
@@ -61,7 +57,7 @@ const readNote = (title, file) => {
         console.log(chalk.bold(note.title));
         console.log("  " + chalk.grey(note.body));
     } else {
-        console.log(chalk.ref.inverse("No such title"));
+        console.log(chalk.red.inverse("No such title"));
     }
 
 }
@@ -77,7 +73,6 @@ const listNotes = (file) => {
 }
 
 module.exports = {
-    getNotes,
     addNote,
     removeNote,
     readNote,
