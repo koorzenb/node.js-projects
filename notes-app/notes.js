@@ -53,6 +53,16 @@ const loadNotes = file => {
 }
 
 const readNote = (title, file) => {
+    const notes = loadNotes(file); 
+    const note = notes.find( note => title === note.title);
+    
+    if(note) {
+        console.log(" ");
+        console.log(chalk.bold(note.title));
+        console.log("  " + chalk.grey(note.body));
+    } else {
+        console.log(chalk.ref.inverse("No such title"));
+    }
 
 }
 
