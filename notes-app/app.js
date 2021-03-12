@@ -7,6 +7,8 @@ yargs.version("1.0.1");
 // command line : 
 //   node app.js add --title="To buy" --body="Carrots Cabbage" 
 
+const file = 'notes.json';
+
 yargs.command({
     command: "add",
     describe: "add a new note",
@@ -23,7 +25,22 @@ yargs.command({
         }
     },
     handler: function add(argv) {
-        notes.addNote(argv.title, argv.body);
+        notes.addNote(argv.title, argv.body, file);
+    }
+})
+
+yargs.command({
+    command: "remove",
+    describe: "remove a new note",
+    builder: {
+        title: {
+            describe: "Remove a note",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function remove(argv) {
+        notes.removeNote(argv.title, file);
     }
 })
 
