@@ -52,6 +52,8 @@ const readNote = (title, file) => {
     const notes = loadNotes(file); 
     const note = notes.find( note => title === note.title);
     
+    debugger;
+
     if(note) {
         console.log(" ");
         console.log(chalk.bold(note.title));
