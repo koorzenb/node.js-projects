@@ -9,16 +9,16 @@ if(!address) {
   console.log("please provide address");
 } else {
 
-  geocode(address, (error, data) => {
+  geocode(address, (error, {latitude, longtitude, location} = {}) => {
     if(error) {
       return console.log(error);
     }
-    forecast(data.latitude, data.longtitude, (error, forecastData) => {
+    forecast(latitude, longtitude, (error, forecastData) => {
       if(error) {
         return console.log(chalk.red.inverse('Error', error))
       }
       
-          console.log(data.location);
+          console.log(location);
           console.log(forecastData);
         })
       
