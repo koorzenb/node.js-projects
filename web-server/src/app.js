@@ -39,6 +39,19 @@ app.get('/about', (req,res) => {
     }); 
 })
 
+app.get('/help/*', (req,res) => {
+    res.render('404', {
+        title: "Help topic not found"
+    })
+})
+
+app.get('*', (req,res) => {
+    res.render('404', {
+        title: "Page not found"
+    })
+})
+
+
 app.get('/weather', (req,res) => {
     res.send({
         forecast: "mild",
