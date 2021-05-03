@@ -14,10 +14,13 @@ body {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
     color: #888888;
     border-top: 2px solid gray;
     margin-top: 1rem;
     padding: 1rem 0;
+    width: 40rem;
 }
 
 header {
