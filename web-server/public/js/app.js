@@ -1,5 +1,3 @@
-console.log("Client side js file loaded");
-
 const fetchWeather = (location) => {
     fetch(`/weather?address=${location}`).then((response) => {
         response.json().then((data) => {
@@ -8,6 +6,7 @@ const fetchWeather = (location) => {
             } else {
                 console.log(messageOne.textContent = data.location);
                 console.log(messageTwo.textContent = data.forecast);
+                console.log(data);
             }
         })
     })
