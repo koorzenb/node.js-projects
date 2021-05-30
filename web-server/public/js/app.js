@@ -2,11 +2,10 @@ const fetchWeather = (location) => {
     fetch(`/weather?address=${location}`).then((response) => {
         response.json().then((data) => {
             if(data.error) {
-                console.log(messageOne.textContent = data.error);
+                messageOne.textContent = data.error;
             } else {
-                console.log(messageOne.textContent = data.location);
-                console.log(messageTwo.textContent = data.forecast);
-                console.log(data);
+                messageOne.textContent = data.location;
+                messageTwo.textContent = data.forecast;
             }
         })
     })
