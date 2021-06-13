@@ -9,12 +9,10 @@ app.use(express.json());
 
 app.post('/users', (req,res) => {
     const user = new User(req.body);
-    console.log(user);
     user.save().then(()=> {
-        console.log(user);
         res.send(user)
     }).catch(error => {
-        throw new Error(error)
+        res.status(400).send(error);
     })
 
 })
