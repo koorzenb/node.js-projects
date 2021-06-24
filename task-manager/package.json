@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "server": "/Users/BarendK/mongodb/bin/mongod.exe --dbpath=/Users/BarendK/mongodb-data"
+    "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data"
   },
   "keywords": [],
   "author": "",
