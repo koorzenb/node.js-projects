@@ -1,2 +1,2 @@
-# node.js-course
-My first weather app
+# node.js-projects
+Various node projects to develop understanding
