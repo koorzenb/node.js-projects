@@ -54,11 +54,11 @@ router.patch('/users/:id', async (req,res) => {
         await user.save;
 
         if(!user) {
-            return res.status(404).send();
+            return res.status(404).send("No such user");
         }
         res.send(user);
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send("No such user")
     }
 })
 
