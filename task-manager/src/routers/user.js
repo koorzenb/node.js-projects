@@ -7,9 +7,20 @@ router.post('/users', async (req,res) => {
 
     try {
         await user.save();
-        res.status(201).send(user);
+        const token = await user.generateAuthToken();
+        res.status(201).send({ user, token});
     } catch (error) {
         res.status(400).send(error);
+    }
+})
+
+router.post('/users/login', async (req,res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password);
+        const token = await user.generateAuthToken();
+        res.send({user, token});
+    } catch (error) {
+        res.status(400).send();
     }
 })
 
@@ -25,7 +36,7 @@ router.get('/users', async (req,res) => {
 
 router.patch('/users/:id', async (req,res) => {
     const updates = Object.keys(req.body);
-    console.log(updates);
+    console.log(updates); 
     const allowedUpdates = ["name", "email", "password", "age"];
     const isValidOperations = updates.every(update => allowedUpdates.includes(update));
     console.log(isValidOperations);
@@ -35,7 +46,13 @@ router.patch('/users/:id', async (req,res) => {
     }
 
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true});
+
+        const user = await User.findById(req.params.id);
+
+        updates.forEach(update => user[update] = req.body[update])
+
+        await user.save;
+
         if(!user) {
             return res.status(404).send();
         }
