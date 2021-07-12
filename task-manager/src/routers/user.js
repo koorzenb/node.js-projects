@@ -51,59 +51,55 @@ router.post('/users/logoutAll', auth, async (req,res) => {
     }
 })
 
-router.patch('/users/:id', async (req,res) => {
+router.patch('/users/me', auth, async (req,res) => {
     const updates = Object.keys(req.body);
-    console.log(updates); 
     const allowedUpdates = ["name", "email", "password", "age"];
     const isValidOperations = updates.every(update => allowedUpdates.includes(update));
-    console.log(isValidOperations);
 
     if(!isValidOperations) {
         return res.status(400).send( {error: "InVaLiD update"})
     }
 
     try {
+        
+        updates.forEach(update => req.user[update] = req.body[update])
 
-        const user = await User.findById(req.params.id);
-
-        updates.forEach(update => user[update] = req.body[update])
-
-        await user.save;
-
-        if(!user) {
-            return res.status(404).send("No such user");
-        }
-        res.send(user);
+        await req.user.save();
+        res.send(req.user);
     } catch (error) {
-        res.status(400).send("No such user")
+        res.status(400).send("Something went wrong...")
     }
 })
 
-router.get('/users/:id', async (req,res) => {
-    const _id = req.params.id;
+router.delete('/users/me', auth, async (req,res) => {
 
     try {
-        const user = await User.findById(_id);
-        if(!user) {
-            return res.status(404).send();
-        }
-        res.send(user);
-    } catch (error) {
-        res.status(500).send(error)
-    }
-})
+        // const user = await User.findByIdAndDelete(req.user._id);
+        // if(!user) {
+        //     return res.status(404).send();
+        // }
 
-router.delete('/users/:id', async (req,res) => {
+        await req.user.remove();
 
-    try {
-        const user = await User.findByIdAndDelete(req.params.id);
-        if(!user) {
-            return res.status(404).send();
-        }
-        res.send(user);
+        res.send(req.user);
     } catch (error) {
         res.status(500).send(error);        
     }
 })
 
+
+// TODO: Administrator priviledge
+// router.get('/users/:id', async (req,res) => {
+//     const _id = req.params.id;
+
+//     try {
+//         const user = await User.findById(_id);
+//         if(!user) {
+//             return res.status(404).send();
+//         }
+//         res.send(user);
+//     } catch (error) {
+//         res.status(500).send(error)
+//     }
+// })
 module.exports = router;
