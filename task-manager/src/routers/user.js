@@ -29,6 +29,28 @@ router.get('/users/me', auth, async (req,res) => {
     res.send(req.user)
 })
 
+router.post('/users/logout', auth, async (req,res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter( token => token.token !== req.token);
+        await req.user.save();
+
+        res.send("Logged out");
+    } catch (error) {
+        res.status(500).send();
+    }
+})
+
+router.post('/users/logoutAll', auth, async (req,res) => {
+    try {
+        req.user.tokens = [];
+        await req.user.save();
+
+        res.send("Logged out all");
+    } catch (error) {
+        res.status(500).send();
+    }
+})
+
 router.patch('/users/:id', async (req,res) => {
     const updates = Object.keys(req.body);
     console.log(updates); 
