@@ -8,13 +8,13 @@ const taskRouter = require("./routers/task")
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use((req,res,next) => {
-    if(req.method === "GET") {
-        res.status(503).send("Service down for maintenance");
-    } else {
-        next();
-    }
-})
+// app.use((req,res,next) => {
+//     if(req.method === "GET") {
+//         res.status(503).send("Service down for maintenance");
+//     } else {
+//         next();
+//     }
+// })
 
 // app.use((req,res,next) => {
 //         res.status(503).send("Service down for maintenance");
@@ -29,10 +29,10 @@ app.listen(port, () => console.log(`Server is up on port ${port}`))
 const jwt = require('jsonwebtoken');
 
 const fn = async () => {
-    const token = jwt.sign({ _id: 'abc123'}, 'thisismynewtoken');
+    const token = jwt.sign({ _id: 'abc123'}, 'thisismynewcourse');
     // console.log(token );
 
-    const data = jwt.verify(token, "thisismynewtoken");
+    const data = jwt.verify(token, "thisismynewcourse");
     // console.log(data);
 
 }
