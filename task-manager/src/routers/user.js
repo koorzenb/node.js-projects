@@ -26,10 +26,6 @@ router.post('/users/login', async (req,res) => {
     }
 })
 
-router.get('/users/me', auth, async (req,res) => {
-    res.send(req.user)
-})
-
 router.post('/users/logout', auth, async (req,res) => {
     console.log(req, res);
     try {
@@ -51,6 +47,10 @@ router.post('/users/logoutAll', auth, async (req,res) => {
     } catch (error) {
         res.status(500).send();
     }
+})
+
+router.get('/users/me', auth, async (req,res) => {
+    res.send(req.user)
 })
 
 router.patch('/users/me', auth, async (req,res) => {
