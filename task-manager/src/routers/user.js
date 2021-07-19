@@ -16,6 +16,7 @@ router.post('/users', async (req,res) => {
 })
 
 router.post('/users/login', async (req,res) => {
+    console.log("Body = ", req.body);
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         const token = await user.generateAuthToken();
@@ -30,6 +31,7 @@ router.get('/users/me', auth, async (req,res) => {
 })
 
 router.post('/users/logout', auth, async (req,res) => {
+    console.log(req, res);
     try {
         req.user.tokens = req.user.tokens.filter( token => token.token !== req.token);
         await req.user.save();

@@ -26,15 +26,17 @@ app.use(taskRouter);
 
 app.listen(port, () => console.log(`Server is up on port ${port}`))
 
-const jwt = require('jsonwebtoken');
+const Task = require('./models/task')
+const User = require("./models/user")
 
-const fn = async () => {
-    const token = jwt.sign({ _id: 'abc123'}, 'thisismynewcourse');
-    // console.log(token );
+const main = async () => {
+    const task = await Task.findById('60ede7eb05a3ad3a2486294f');
+    await task.populate('owner').execPopulate()
+    console.log(task.owner);
 
-    const data = jwt.verify(token, "thisismynewcourse");
-    // console.log(data);
-
+    const user = await User.findById("60ede234284fc81a18954c6e");
+    await user.populate('tasks').execPopulate();
+    console.log(user.tasks);
 }
 
-fn();
+main();

@@ -45,6 +45,11 @@ const userSchema = mongoose.Schema({
     }]
 });
 
+userSchema.virtual('tasks', {
+    ref: "Task",
+    localField: "_id",
+    foreignField: "owner"
+})
 
 // .methods are for methods on instance and individual user
 // .statics for methods on (uppercase) User model
