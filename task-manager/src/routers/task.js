@@ -23,7 +23,7 @@ router.get("/tasks", auth, async (req,res) => {
 
     try {
         await req.user.populate('tasks').execPopulate();
-        res.send(tasks);
+        res.send(req.user.tasks);
     } catch (error) {
         res.status(500).send(error)
     }
