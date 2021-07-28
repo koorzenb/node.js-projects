@@ -31,12 +31,12 @@ const User = require("./models/user")
 
 const main = async () => {
     const task = await Task.findById('60ede7eb05a3ad3a2486294f');
-    await task.populate('owner').execPopulate()
-    console.log(task.owner);
+    // await task.populate('owner').execPopulate()
+    // console.log(task.owner);
 
-    const user = await User.findById("60ede234284fc81a18954c6e");
-    await user.populate('tasks').execPopulate();
-    console.log(user.tasks);
+    // const user = await User.findById("60ede234284fc81a18954c6e");
+    // await user.populate('tasks').execPopulate();
+    // console.log(user.tasks);
 }
 
 main();
