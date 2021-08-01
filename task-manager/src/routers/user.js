@@ -17,7 +17,6 @@ router.post('/users', async (req,res) => {
 })
 
 router.post('/users/login', async (req,res) => {
-    console.log("@router.post users/login Body = ", req.body);
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         const token = await user.generateAuthToken();
@@ -28,7 +27,6 @@ router.post('/users/login', async (req,res) => {
 })
 
 router.post('/users/logout', auth, async (req,res) => {
-    console.log(req.user);
     try {
         req.user.tokens = req.user.tokens.filter( token => token.token !== req.token);
         await req.user.save();
@@ -91,7 +89,23 @@ router.delete('/users/me', auth, async (req,res) => {
 })
 
 const upload = multer({
-    dest: 'avatars'
+    dest: 'avatars',
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb) {
+                // see https://www.npmjs.com/package/multer -> API for more info
+        // if(!file.originalname.endsWith('.pdf')) {
+            //     return cb(new Error('Please upload PDF'))
+            // }
+            
+            if(!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
+                return cb(new Error('Please upload an image file'))
+            }
+        // cb(new Error('File must be a pdf'));
+        cb(undefined, true);
+        // cb(undefined, false);
+    }
 })
 
 router.post('/users/me/avatar', upload.single('avatar'), (req,res) => {
