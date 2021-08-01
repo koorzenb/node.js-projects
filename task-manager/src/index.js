@@ -42,8 +42,8 @@ const User = require("./models/user")
 const main = async () => {
     const task = await Task.findById('60ede7eb05a3ad3a2486294f');
 
-    const token = jwt.sign({_id: "abc123"}, "thisismynewcourse")
-    console.log("new signed otken = ", token);
+    // const token = jwt.sign({_id: "abc123"}, "thisismynewcourse")
+    // console.log("@index.js main - new signed token = ", token);
     
     // await task.populate('owner').execPopulate()
     // console.log(task.owner);
