@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data"
+    "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data",
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@sendgrid/mail": "^7.4.5",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "jest": "^23.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.13",
