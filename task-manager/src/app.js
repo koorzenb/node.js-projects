@@ -1,9 +1,21 @@
-const app = require("./app");
+//used by jest
+
+const express = require("express");
+require("./db/mongoose");
+const userRouter = require("./routers/user")
+const taskRouter = require("./routers/task")
+
+const app = express();
+
+app.use(express.json());
+app.use(userRouter);
+app.use(taskRouter);
+
+module.exports = app;
+
 // const jwt = require("jsonwebtoken")
 
 // see https://mongoosejs.com/docs/queries.html for more methods
-
-const port = process.env.PORT;
 
 // app.use((req,res,next) => {
 //     if(req.method === "GET") {
@@ -16,8 +28,6 @@ const port = process.env.PORT;
 // app.use((req,res,next) => {
 //         res.status(503).send("Service down for maintenance");
 // })
-
-app.listen(port, () => console.log(`Server is up on port ${port}`))
 
 // const Task = require('./models/task')
 // const User = require("./models/user")

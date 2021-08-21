@@ -7,7 +7,10 @@
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
     "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data",
-    "test": "jest --watchAll"
+    "test": "env-cmd -f ./config/test.env jest --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +30,7 @@
   "devDependencies": {
     "chalk": "^4.1.1",
     "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "supertest": "^3.4.1"
   }
 }
