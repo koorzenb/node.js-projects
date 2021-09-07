@@ -1,15 +1,9 @@
 const request = require('supertest');
 const app = require("../src/app");
 const User = require('../src/models/user');
-const {userOne, userOneId, setupDatabase} = require("./fixtures/db")
+const {userOne, userTwo, userOneId, setupDatabase} = require("./fixtures/db")
 
 beforeEach(setupDatabase)
-
-const userTwo = {
-    name: "Barend",
-    email: "koorzenb@exmaple.com",
-    password: "MyPass777!"
-}
 
 test("Should signup a new user", async () => {
     const response = await request(app).post('/users').send({
