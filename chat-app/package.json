@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/app.js -e js,hbs",
+    "dev": "nodemon src/index.js",
     "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data",
     "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand"
   },
@@ -18,9 +18,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "jest": "^23.6.0",
-    "hbs": "^4.1.1",
     "request": "^2.88.2",
-    "socket.io": "^4.1.2"
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "chalk": "^4.1.1",
