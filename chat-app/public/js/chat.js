@@ -1,10 +1,13 @@
-const socket = io();
+const socket = io()
 
-socket.on("broadcast", (mes) => console.log(mes))
+socket.on('broadcast', (message) => {
+    console.log(message)
+})
 
 document.querySelector('#message-form').addEventListener('submit', (e) => {
-    e.preventDefault;
-    console.log('clicked');
-    const message = document.querySelector("input").value;
-    socket.emit("sendMessage", message);
-});
+    e.preventDefault()
+
+    const message = e.target.elements.message.value
+
+    socket.emit('sendMessage', message)
+})
