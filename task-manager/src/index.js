@@ -3,8 +3,8 @@ const app = require("./app");
 
 // see https://mongoosejs.com/docs/queries.html for more methods
 
-const port = process.env.PORT;
 
+const port = process.env.PORT;
 // app.use((req,res,next) => {
 //     if(req.method === "GET") {
 //         res.status(503).send("Service down for maintenance");

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "dev": "nodemon src/app.js -e js,hbs",
     "server": "/Users/koorz/mongodb/bin/mongod.exe --dbpath=/Users/koorz/mongodb-data",
     "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand"
   },
@@ -17,7 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "hbs": "^4.1.1",
+    "request": "^2.88.2",
+    "socket.io": "^4.1.2"
   },
   "devDependencies": {
     "chalk": "^4.1.1",
