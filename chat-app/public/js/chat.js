@@ -1,6 +1,6 @@
 const socket = io()
 
-socket.on('broadcast', (message) => {
+socket.on('message', (message) => {
     console.log(message)
 })
 
