@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.4",
     "express": "^4.17.1",
     "jest": "^23.6.0",
     "request": "^2.88.2",
