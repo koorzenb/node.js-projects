@@ -4,29 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat App</title>
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/styles.min.css">
 </head>
 <body>
-    <h2>Chat App</h2>
+    <div class="chat">
+        <div class="chat__sidebar">
 
-    <div id="messages"></div>
+        </div>
 
-    <form id="message-form">
-        <input name="message" placeholder="Message">
-        <button>Send</button>
-    </form>
-    <button id="send-location">Send Location</button>
+        <div class="chat__main">
 
-    <script id="message-template" type="text/html">
+            <div id="messages" class="chat__messages"></div>
+
+            <div class="compose">
+                <form id="message-form">
+                    <input name="message" placeholder="Message">
+                    <button>Send</button>
+                </form>
+                <button id="send-location">Send Location</button>
+            </div>
+
+        
+        </div>
+    </div>
+
+    <script id="message-template" class="message" type="text/html">
         <div>
-            <p>{{createdAt}} - {{message}}</p>
+            <p>
+                <span class="message__name">Some user</span>
+                <span class="message__meta">{{createdAt}} - </span>
+            </p>
+            <p>{{message}}</p>
         </div>        
     </script>
-
+    
     <script id="location-template" type="text/html">
-        <div>
-            <p></p>
-            <p>{{createdAt}} - <a href={{location}} target="_blank">My current location</a></p>
+        <div class="message">
+            <p>
+                <span class="message__name">Some user</span>
+                <span class="message__meta">{{createdAt}} - </span>
+            </p>
+            <p><a href={{location}} target="_blank">My current location</a></p>
         </div>        
     </script>
 
