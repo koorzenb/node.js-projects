@@ -1,20 +1,20 @@
 const users = [];
 
-const addUser = ({ id, username, room}) => {
+const addUser = ({ id, username, room }) => {
     username = username.trim().toLowerCase();
     room = room.trim().toLowerCase();
-    
-    if(!username || !room) {
+
+    if (!username || !room) {
         return {
             error: 'Username and room are required'
         }
     }
 
-    const existingUser = users.find( user => {
+    const existingUser = users.find(user => {
         return user.room === room && user.username === username;
     })
 
-    if(existingUser) {
+    if (existingUser) {
         return {
             error: 'Username is in use'
         }
@@ -22,13 +22,31 @@ const addUser = ({ id, username, room}) => {
 
     const user = { id, username, room }
     users.push(user);
-    return {user}
+    return { user }
 }
 
-addUser({
-    id: 22,
-    username: '  Barend',
-    room: 'city   '
-})
+const removeUser = id => {
+    const index = users.findIndex(user => user.id === id)
 
-console.log(users);
+    if (index !== -1) {
+        return users.splice(index, 1)[0]
+    }
+}
+
+const getUser = id => {
+    const user = users.find( user => user.id === id);
+    return user != undefined ? user : {error: "No such user"}
+}
+
+const getUsersInRoom = room => {
+    room = room.trim().toLowerCase();;
+    const usersInRoom = users.filter(user => user.room === room);
+    return usersInRoom.length != 0 ? usersInRoom : {error: "Room is empty"}
+}
+
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+}
