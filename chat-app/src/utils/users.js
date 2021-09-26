@@ -32,7 +32,11 @@ const removeUser = id => {
         return users.splice(index, 1)[0]
     }
 }
-
+/**
+ * Returns user it find for id that was sent
+ * @param {string} id - id of user
+ * @returns 
+ */
 const getUser = id => {
     const user = users.find( user => user.id === id);
     return user != undefined ? user : {error: "No such user"}

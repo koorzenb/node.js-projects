@@ -15,17 +15,19 @@ console.log(room);
 socket.on('message', (message) => {
     console.log(message);
     const html = Mustache.render(messageTemplate, {
+        username: message.username,
         message: message.text,
         createdAt: moment(message.createdAt).format('h:mm a')
     });
     $messages.insertAdjacentHTML('beforeend', html);
 })
 
-socket.on('locationMessage', (location) => {
-    console.log(location);
+socket.on('locationMessage', (message) => {
+    console.log(message);
     const html = Mustache.render(locationTemplate, {
-        location: location.location,
-        createdAt: moment(location.createdAt).format('h:mm a')
+        username: message.username,
+        location: message.location,
+        createdAt: moment(message.createdAt).format('h:mm a')
     });
     $messages.insertAdjacentHTML('beforeend', html);
 })
