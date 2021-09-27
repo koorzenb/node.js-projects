@@ -42,7 +42,6 @@ socket.on('message', (message) => {
 })
 
 socket.on('locationMessage', (message) => {
-    console.log(message);
     const html = Mustache.render(locationTemplate, {
         username: message.username,
         location: message.location,
